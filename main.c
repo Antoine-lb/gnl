@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 size_t ft_strlcat(char *dst,
-									const char *src, size_t dstsize)
+				  const char *src, size_t dstsize)
 {
 	size_t i;
 	size_t sizedst;
@@ -60,9 +60,9 @@ void test(char *str)
 int main(int ac, char **av)
 {
 	int fd;
-	// int ret;
-	// char *line;
+	char *line;
 
+	// int ret;
 	// if (!ac)
 	// 	return (-1);
 	// fd = open(av[1], O_RDONLY);
@@ -74,6 +74,8 @@ int main(int ac, char **av)
 	// get_next_line(fd, &line);
 	// printf("%d: %s\n", ret, line);
 	// free(line);
+
+	test("bible");
 
 	test("1_till_4");
 	test("1_to_4");
@@ -100,18 +102,22 @@ int main(int ac, char **av)
 	test("no_new_line");
 	test("with_new_line");
 
-	test("bible");
-
-	printf("\n\n=== 3.txt ===\n");
-	fd = open("tests/3.txt", O_RDONLY);
-	int res = get_next_line(fd, &line);
-	printf("res = %d line = %s\n\n", res, line);
-	res = get_next_line(fd, &line);
-	printf("res = %d line = %s\n\n", res, line);
-	res = get_next_line(fd, &line);
-	printf("res = %d line = %s\n\n", res, line);
-	res = get_next_line(fd, &line);
-	printf("res = %d line = %s\n\n", res, line);
+	{
+		printf("\n\n=== 3.txt ===\n");
+		fd = open("tests/3.txt", O_RDONLY);
+		int res = get_next_line(fd, &line);
+		printf("res = %d line = %s\n\n", res, line);
+		free(line);
+		res = get_next_line(fd, &line);
+		printf("res = %d line = %s\n\n", res, line);
+		free(line);
+		res = get_next_line(fd, &line);
+		printf("res = %d line = %s\n\n", res, line);
+		free(line);
+		res = get_next_line(fd, &line);
+		printf("res = %d line = %s\n\n", res, line);
+		free(line);
+	}
 
 	{
 		printf("\n\n=== abc.txt ===\n");
@@ -121,22 +127,26 @@ int main(int ac, char **av)
 		printf("ft_ res = %d\n", res);
 		printf("lib line = abc\n");
 		printf("ft_ line = %s\n\n", line);
+		free(line);
 		res = get_next_line(fd, &line);
 		printf("lib res = 0\n");
 		printf("ft_ res = %d\n", res);
 		printf("lib line = \n");
 		printf("ft_ line = %s\n\n", line);
+		free(line);
 	}
 
 	{
 		printf("\n\n=== abcn.txt ===\n");
 		fd = open("tests/abcn.txt", O_RDONLY);
 		int res = get_next_line(fd, &line);
+		free(line);
 		printf("lib res = 1\n");
 		printf("ft_ res = %d\n", res);
 		printf("lib line = abc\n");
 		printf("ft_ line = %s\n\n", line);
 		res = get_next_line(fd, &line);
+		free(line);
 		printf("lib res = 0\n");
 		printf("ft_ res = %d\n", res);
 		printf("lib line = \n");
@@ -151,16 +161,19 @@ int main(int ac, char **av)
 		printf("ft_ res = %d\n", res);
 		printf("lib line = \n");
 		printf("ft_ line = %s\n\n", line);
+		free(line);
 		res = get_next_line(fd, &line);
 		printf("lib res = 1\n");
 		printf("ft_ res = %d\n", res);
 		printf("lib line = \n");
 		printf("ft_ line = %s\n\n", line);
+		free(line);
 		res = get_next_line(fd, &line);
 		printf("lib res = 0\n");
 		printf("ft_ res = %d\n", res);
 		printf("lib line = \n");
 		printf("ft_ line = %s\n\n", line);
+		free(line);
 	}
 
 	{
@@ -171,23 +184,10 @@ int main(int ac, char **av)
 		printf("ft_ res = %d\n", res);
 		printf("lib line = \n");
 		printf("ft_ line = %s\n\n", line);
+		free(line);
 	}
 
-	// {
-	// 	char str[] = "hello\n1234";
-	// 	printf("full_line func = %d\n", full_line(str, 5));
-	// 	printf("full_line expe = %d\n", 5);
-	// }
-	// {
-	// 	char str[] = "hell\n1234";
-	// 	printf("full_line func = %d\n", full_line(str, 5));
-	// 	printf("full_line expe = %d\n", 4);
-	// }
-	// {
-	// 	char str[] = "";
-	// 	printf("full_line func = %d\n", full_line(str, 5));
-	// 	printf("full_line expe = %d\n", 4);
-	// }
-	while(1);
+	while (1)
+		;
 	return (0);
 }

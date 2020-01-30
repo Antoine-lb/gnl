@@ -57,7 +57,8 @@ void test(char *str)
 	free(line);
 }
 
-int main(int ac, char **av)
+// int main(int ac, char **av)
+int main()
 {
 	int fd;
 	char *line;
@@ -75,7 +76,7 @@ int main(int ac, char **av)
 	// printf("%d: %s\n", ret, line);
 	// free(line);
 
-	test("bible");
+	// test("bible");
 
 	test("1_till_4");
 	test("1_to_4");
